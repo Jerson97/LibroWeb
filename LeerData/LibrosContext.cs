@@ -18,7 +18,16 @@ namespace LeerData
         .EnableSensitiveDataLogging(); 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<LibroAutor>().HasKey(x => new {x.AutorId, x.LibroId});
+        }
+
         public DbSet<Libro> Libro {get; set;}
+        public DbSet<Precio> Precio {get; set;}
+        public DbSet<Comentario> Comentario {get; set;}
+        public DbSet<Autor> Autor {get; set;}
+        public DbSet<LibroAutor> LibroAutor {get; set;}
     }
 
 }
