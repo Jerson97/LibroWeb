@@ -10,26 +10,14 @@ namespace LeerData
         {
             using(var db = new LibrosContext())
             {
-                var nuevoAutor = new Autor {
-                    Nombre = "Pedro",
-                    Apellidos = "Paredes",
-                    Grado = "Master"
-                };
-                
-                db.Add(nuevoAutor);
-
-                var nuevoAutor2 = new Autor {
-                    Nombre = "Palola",
-                    Apellidos = "Martinez",
-                    Grado = "Master"
-                };
-                
-                db.Add(nuevoAutor2);
-
-                var estadoTransaccion = db.SaveChanges();
-                Console.WriteLine("Estado de transaccion ===>" + estadoTransaccion);
-
-                
+                var autor = db.Autor.Single(x => x.Nombre == "Paola");
+                if (autor != null)
+                {
+                    autor.Apellidos = "Soto";
+                    autor.Grado = "Biologo";
+                    var estadoTransaccion = db.SaveChanges();
+                    Console.WriteLine("Estado de transaccion ==>" + estadoTransaccion);
+                }
             }
         }
     }
